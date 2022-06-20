@@ -1,5 +1,6 @@
-package com.example.gameofthroneshouses
+package com.example.gameofthroneshouses.View.Activity
 
+import android.os.Build
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.MutableLiveData
+import com.example.gameofthroneshouses.Model.House
+import com.example.gameofthroneshouses.R
+import com.example.gameofthroneshouses.Rest.GotCommunicator
 import com.example.gameofthroneshouses.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,11 +32,18 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        var queryResultList: MutableLiveData<List<House>> = MutableLiveData()
+        queryResultList.observeForever{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                queryResultList.value?:it.forEach {house ->
+                    println(house.name)
+                }}
         }
+        binding.fab.setOnClickListener { view ->
+            GotCommunicator.queryAllHouses(queryResultList)
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
