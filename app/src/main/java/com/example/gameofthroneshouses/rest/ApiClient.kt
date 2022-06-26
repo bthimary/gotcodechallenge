@@ -1,4 +1,4 @@
-package com.example.gameofthroneshouses.Rest
+package com.example.gameofthroneshouses.rest
 
 
 import com.google.gson.GsonBuilder
