@@ -7,18 +7,20 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import java.util.concurrent.TimeUnit
 
 interface GotRestApiService {
 
-    @GET("api/houses")
+    @GET(GotUrlUtil.GET_HOUSES_RELATIVE)
     fun queryAllHouses(): Call<ResponseBody?>
 
-    @GET("api/characters/")
-    fun queryCharacterById(): Call<ResponseBody>
+    @GET(GotUrlUtil.GET_CHARACTERS_RELATIVE)
+    @PUT("/{id}")
+    fun queryCharacterById( id :String): Call<ResponseBody>
 
     companion object {
-        const val BASEURL = "https://anapioficeandfire.com/"
+
         const val TIMEOUT: Long = 100
         var retrofit: Retrofit? = null
         var gotRestService: GotRestApiService? = null
@@ -32,7 +34,7 @@ interface GotRestApiService {
                 .build()
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
-                    .baseUrl(BASEURL)
+                    .baseUrl(GotUrlUtil.BASIC_REST_URL)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()

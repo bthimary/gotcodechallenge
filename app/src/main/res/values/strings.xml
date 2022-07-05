@@ -2,11 +2,20 @@
     <string name="app_name">Game of Thrones Houses</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="hd_detail_name">House:</string>
+    <string name="hd_detail_region">Region:</string>
+    <string name="hd_detail_coatofarms">Coat of Arms:</string>
+    <string name="hd_detail_words">Words:</string>
+    <string name="hd_detail_titles">Titles:</string>
+    <string name="hd_detail_seats">Seats:</string>
+    <string name="hd_detail_currentLord">Current Lord:</string>
+    <string name="hd_detail_heir">Heir:</string>
+    <string name="hd_detail_overlord">Overlord:</string>
+    <string name="hd_detail_foundet">Founded:</string>
+    <string name="hd_detail_founder">Founder:</string>
+    <string name="hd_detail_dietOut">Dietout:</string>
+    <string name="hd_detail_ancestralWeapons">Ancestral Weapons:</string>
+    <string name="hd_detail_cadetBrances">Cadet Brances:</string>
+    <string name="hd_detail_swornMembers">Sworn Mebers:</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

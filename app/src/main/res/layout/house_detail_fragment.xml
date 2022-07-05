@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.gameofthroneshouses.viewmodel.GotHouseDetailViewModel"/>
+    </data>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:stretchColumns="1"
+        >
+
+        <TableRow>
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="10"
+                android:fontFamily="@font/game_of_thrones"
+                android:text="@{viewModel.house.name}"
+                android:textIsSelectable="false"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow>
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="10"
+                    android:fontFamily="@font/game_of_thrones"
+                    android:text="@string/hd_detail_region"
+                    android:textIsSelectable="false"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="10"
+                    android:fontFamily="@font/game_of_thrones"
+
+                    android:textIsSelectable="false"
+                    android:textSize="20sp" />
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="10"
+                android:fontFamily="@font/game_of_thrones"
+                android:text="@string/hd_detail_currentLord"
+                android:textIsSelectable="false"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="10"
+                android:fontFamily="@font/game_of_thrones"
+                android:textIsSelectable="false"
+                android:textSize="20sp" />
+        </TableRow>
+    </TableLayout>
+</layout>

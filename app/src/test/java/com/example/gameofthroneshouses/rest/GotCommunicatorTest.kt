@@ -1,7 +1,7 @@
 package com.example.gameofthroneshouses.rest
 
 import androidx.lifecycle.MutableLiveData
-import com.example.gameofthroneshouses.Model.House
+import com.example.gameofthroneshouses.model.House
 
 import org.junit.Test
 

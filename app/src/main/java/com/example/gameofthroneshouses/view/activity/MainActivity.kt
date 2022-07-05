@@ -5,41 +5,57 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.gameofthroneshouses.R
 import com.example.gameofthroneshouses.databinding.ActivityMainBinding
-import com.example.gameofthroneshouses.repository.GotRepository
+import com.example.gameofthroneshouses.repository.GotMainRepository
 import com.example.gameofthroneshouses.rest.GotRestApiService
 import com.example.gameofthroneshouses.view.adapter.GotHouseAdapter
-import com.example.gameofthroneshouses.viewmodel.GotViewModel
-import com.example.gameofthroneshouses.viewmodel.GotViewModelFactory
+import com.example.gameofthroneshouses.viewmodel.GotMainViewModel
+import com.example.gameofthroneshouses.viewmodel.GotMainViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    private val TAG = "MainActivity"
+    /** Tag for Log Information*/
+    private val tag = "MainActivity"
+
+    /** Binding in MainActivity */
     private lateinit var binding: ActivityMainBinding
-    lateinit var viewModel: GotViewModel
-    private val gotRestApiService= GotRestApiService.getInstance()
-    val houseAdapter= GotHouseAdapter()
+
+    /** viewModel of the MainActivity*/
+    lateinit var viewModel: GotMainViewModel
+
+    /** RestApi for getting House-Data from */
+    private val gotRestApiService = GotRestApiService.getInstance()
+
+    /** Adapter for Display Houses*/
+    private var houseAdapter = GotHouseAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        //init binding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding.houserrecyclerview.adapter = houseAdapter
         setContentView(binding.root)
-        viewModel= ViewModelProvider(this,
-        GotViewModelFactory(GotRepository(gotRestApiService,applicationContext))).get(GotViewModel::class.java)
 
-        binding.houserrecyclerview.adapter=houseAdapter
+        //initialize view model
+        viewModel = ViewModelProvider(
+            this,
+            GotMainViewModelFactory(
+                GotMainRepository(gotRestApiService, applicationContext)
+            )
+        ).get(GotMainViewModel::class.java)
 
+
+        //Set Houses when get response
         viewModel.queryHousesResult.observeForever {
-            Log.i(TAG, "onCreate:$it")
+            Log.i(tag, "setHouseList:$it")
             houseAdapter.setHouseList(it)
         }
+        // Display Errors if there are one
         viewModel.errorMessage.observeForever {
-            Toast.makeText(this,it.text,Toast.LENGTH_LONG).show()
+            Toast.makeText(this, it.text, Toast.LENGTH_LONG).show()
         }
+        // run Api for Query
         viewModel.queryAllHouses()
+
     }
-
-
 }
